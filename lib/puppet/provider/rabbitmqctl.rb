@@ -13,7 +13,7 @@ class Puppet::Provider::Rabbitmqctl < Puppet::Provider
   # Limit each query time by 'timeout'.
   # For example:
   #   users = self.class.run_with_retries { rabbitmqctl 'list_users' }
-  def self.run_with_retries(count=30, step=6, timeout=10)
+  def self.run_with_retries(count=30, step=6, timeout=60)
     count.times do |n|
       begin
         output = Timeout::timeout(timeout) do
