@@ -95,6 +95,15 @@ class rabbitmq::config {
     notify  => Class['rabbitmq::service'],
   }
 
+  file { '/etc/logrotate.d/rabbitmq-server':
+    ensure  => file,
+    path    => '/etc/logrotate.d/rabbitmq-server',
+    content => template('rabbitmq/logrotate.erb'),
+    owner   => '0',
+    group   => '0',
+    mode    => '0644',
+  }
+
   if $admin_enable {
     file { 'rabbitmqadmin.conf':
       ensure  => file,
